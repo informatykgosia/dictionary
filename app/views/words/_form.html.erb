@@ -10,17 +10,20 @@
       </ul>
     </div>
   <% end %>
-
+   
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :language %><br />
-    <%= f.text_field :language %>
-  </div>
+    <%= f.select :language, Word::LANGUAGES.map{|l| [t("words.languages.#{l}"), l]} %><br />
+ </div>  
+  <div class="field">
+    <%= f.select :translations, Word.all.collect { |x| [x.name, x.id]}, {}, { :multiple => true }  %><br />
+ </div> 
 
   <div class="actions">
     <%= f.submit %>
   </div>
+ 
 <% end %>

@@ -9,8 +9,19 @@
   <b>Language:</b>
   <%= @word.language %>
 </p>
+<p>
+
+  <% @word.translations.each do |translation| %>
+    <b>Translations:</b>
+  <% if translation.language == "pl" %>
+  po polsku
+  <% end %>
+    <%= translation.name%>
+  <% end %>
+</p>
+
 
 
 <%= link_to 'Edit', edit_word_path(@word) %> |
-<%= link_to 'Add translation', new_word_path %>
+<%= link_to 'Add translation', new_word_path(@word.translations.build) %>
 <%= link_to 'Back', words_path %>
